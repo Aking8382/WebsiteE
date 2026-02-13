@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Be My Valentine ❤️</title>
+
+<style>
+  body {
+    background: linear-gradient(to right, #ff9a9e, #fad0c4);
+    font-family: Arial, sans-serif;
+    text-align: center;
+    padding-top: 100px;
+    color: white;
+    overflow: hidden;
+  }
+
+  h1 { font-size: 3em; }
+  p { font-size: 1.3em; }
+
+  .btn {
+    padding: 15px 30px;
+    font-size: 18px;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    margin: 15px;
+    transition: 0.3s;
+    position: relative;
+  }
+
+  .yes { background-color: #ff4d6d; color: white; }
+  .no { background-color: #ffffff; color: #ff4d6d; }
+
+  .btn:hover { transform: scale(1.1); }
+  #message { margin-top: 30px; font-size: 1.7em; font-weight: bold; }
+</style>
+</head>
+
+<body>
+
+<h1>Will You Be My Valentine? 💘</h1>
+<p>You make my world brighter every day ✨</p>
+
+<button class="btn yes" onclick="sendChoice('YES')">Yes 💕</button>
+<button class="btn no" onclick="sendChoice('NO')" onmouseover="moveButton(this)">No 😢</button>
+
+<div id="message"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+<script>
+  // Initialize EmailJS with your public key
+  emailjs.init("bXMh4S6-oLOJjNi_U");
+
+  function sendChoice(choice) {
+    const messageBox = document.getElementById("message");
+
+    if (choice === "YES") {
+      messageBox.innerHTML = "I love you Ella 💖";
+    } else {
+      messageBox.innerHTML = "Just pick YES 😄";
+    }
+
+    // Send email via EmailJS
+    emailjs.send("service_mxv2nac", "template_3xcddxt", {
+      choice: choice
+    });
+  }
+
+  function moveButton(btn) {
+    const x = Math.random() * 400 - 200;
+    const y = Math.random() * 200 - 100;
+    btn.style.transform = `translate(${x}px, ${y}px)`;
+  }
+</script>
+
+</body>
+</html>
